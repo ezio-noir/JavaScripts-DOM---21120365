@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Ex09</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
+    <script src="script.js" defer></script>
+
+</head>
+
+<body>
+    <header>
+
+    </header>
+    <main>
+        <h1 class="text-center py-3">Ex09 - Local Storage</h1>
+        <div class="container">
+            <form action="#" method="post" onsubmit="addItem(event)">
+                <div class="mb-3">
+                    <label for="" class="form-label">Add Item</label>
+                    <input type="text" class="form-control" name="keyword" id="keyword" aria-describedby="helpId"
+                        placeholder="" required>
+                </div>
+            </form>
+            <ul class="list-group" id="myList">
+                <li class="list-group-item">Item 1</li>
+                <li class="list-group-item">Item 2</li>
+                <li class="list-group-item">Item 3</li>
+            </ul>
+            <button class="btn btn-danger float-end mt-3" onclick="clearItems()">Clear All Items</button>
+        </div>
+    </main>
+    <footer>
+        <!-- place footer here -->
+    </footer>
+    <!-- Bootstrap JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+        </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+        integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+        </script>
+
+    <script>
+        const addItem = (e) => {
+            e.preventDefault();
+            const keyword = document.querySelector('#keyword');
+            if (keyword.value.trim()) {
+                const items = JSON.parse(localStorage.getItem('items')) || [];
+                items.push(keyword.value.trim());
+                localStorage.setItem('items', JSON.stringify(items));
+                displayList();
+            }
+        }
+
+        const clearItems = () => {
+            if (confirm('Do you really want to claer all?')) {
+                localStorage.removeItem('items');
+                displayList();
+            }
+        }
+
+        const displayList = () => {
+            const items = JSON.parse(localStorage.getItem('items')) || [];
+            const list = document.querySelector('#myList');
+            list.innerHTML = '';
+
+            items.forEach(item => {
+                const li = document.createElement('li');
+                li.className = 'list-group-item';
+                li.innerText = item;
+                list.appendChild(li);
+            });
+        }
+
+        displayList();
+    </script>
+</body>
+
+</html>

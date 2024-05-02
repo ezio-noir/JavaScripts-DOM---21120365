@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Ex05</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <header>
+
+    </header>
+    <main>
+        <h1 class="text-center py-3">Ex05 - Filter List</h1>
+        <div class="container">
+            <div class="mb-3">
+                <label for="" class="form-label">Keyword</label>
+                <input type="text" class="form-control" name="keyword" id="keyword" aria-describedby="helpId"
+                    placeholder="" required>
+            </div>
+            <ul class="list-group">
+                <li class="list-group-item list-group-item-action list-group-item-primary">A</li>
+                <li class="list-group-item">Aa</li>
+                <li class="list-group-item">Ab</li>
+                <li class="list-group-item">Abc</li>
+                <li class="list-group-item list-group-item-action list-group-item-primary">B</li>
+                <li class="list-group-item">Ba</li>
+                <li class="list-group-item">Bb</li>
+                <li class="list-group-item">Bbc</li>
+                <li class="list-group-item list-group-item-action list-group-item-primary">C</li>
+                <li class="list-group-item">Ca</li>
+                <li class="list-group-item">Cb</li>
+                <li class="list-group-item">Cbc</li>
+            </ul>
+        </div>
+    </main>
+    <footer>
+        <!-- place footer here -->
+    </footer>
+    <!-- Bootstrap JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+        </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+        integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+        </script>
+
+    <script>
+        const keyword = document.querySelector('#keyword')
+        keyword.oninput = () => {
+            document.querySelectorAll('.list-group-item:not(.list-group-item-action)').forEach(item => {
+                if (item.innerText.indexOf(keyword.value) >= 0) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            })
+        }
+    </script>
+</body>
+
+</html>
